@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chili.chili.model.Chili;
@@ -22,6 +24,11 @@ public class ChiliController {
     @GetMapping("/chilis")
     public List<Chili> getAllChilis() {
         return chiliService.getChilis();
+    }
+
+    @PostMapping("/chilis/{id}/{quantity}")
+    public Chili updateChiliQuantity(@PathVariable Long id, @PathVariable int quantity) {
+        return chiliService.updateChiliQuantity(id, quantity);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.chili.chili.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,16 @@ public class ChiliService {
 
     public List<Chili> getChilis() {
         return chiliRepository.findAll();
+    }
+
+    public Chili updateChiliQuantity(Long id, int quantity) {
+
+        Optional<Chili> chiliOptional = chiliRepository.findById(id);
+
+        Chili chili = chiliOptional.get();
+        chili.setQuantity(quantity);
+        chiliRepository.save(chili);
+        return chili;
     }
 
 }
