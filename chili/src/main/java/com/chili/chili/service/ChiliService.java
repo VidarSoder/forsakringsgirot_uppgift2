@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.chili.chili.dao.ChiliRepository;
+import com.chili.chili.exception.ChiliNotFoundException;
+import com.chili.chili.exception.InvalidQuantityException;
 import com.chili.chili.model.Chili;
 
 @Service
@@ -22,9 +24,13 @@ public class ChiliService {
     }
 
     public Chili updateChiliQuantity(Long id, int quantity) {
-
+        if (quantity < 0) {
+            throw new InvalidQuantityException("Quantity must be equal or greater than zero");
+        }
         Optional<Chili> chiliOptional = chiliRepository.findById(id);
-
+        if (!chiliOptional.isPresent()) {
+            throw new ChiliNotFoundException("Chili not found with id: " + id);
+        }
         Chili chili = chiliOptional.get();
         chili.setQuantity(quantity);
         chiliRepository.save(chili);

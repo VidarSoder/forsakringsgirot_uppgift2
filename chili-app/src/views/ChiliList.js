@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { ChiliCard } from '../components/ChiliCard.js';
 import { Card, CardContent, Typography, Grid, Container, Button, CardMedia } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
 import { chiliImages } from '../data/images.js'
@@ -25,10 +26,10 @@ function ChiliList() {
                         <Card>
                             <CardMedia
                                 component="img"
-                                alt="Contemplative Reptile"
+                                alt="tempalt"
                                 height="140"
                                 image={chiliImages[i]}
-                                title="Contemplative Reptile"
+                                title="chilipic"
                             />
                             <CardContent>
 
